@@ -1,0 +1,1 @@
+add the navigation design, a screenshot of the employer list, the CRUD implementation summary and a short explanation of LoginRequiredMixin, ModelForm and DeleteView.

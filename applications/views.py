@@ -5,7 +5,7 @@ from django.urls import reverse_lazy
 from django.shortcuts import render
 from django.views.generic import CreateView,DeleteView,UpdateView 
 from .models import Employer, Vacancy, JobApplication
-from .forms import EmployerForm
+from .forms import EmployerForm,VacancyForm
 
  #protected views 
 @login_required
@@ -41,7 +41,7 @@ def application_list(request):
 #protected views ends 
 
 
- 
+# Employer views  
 class EmployerCreateView(LoginRequiredMixin, CreateView):
     model = Employer
     form_class = EmployerForm
@@ -68,3 +68,26 @@ class EmployerDeleteView(LoginRequiredMixin, DeleteView):
     model = Employer
     template_name = "employers/confirm_delete.html"
     success_url = reverse_lazy("employer_list")
+
+# Emloyer views end 
+
+
+ 
+class VacancyCreateView(LoginRequiredMixin, CreateView):
+    model = Vacancy
+    form_class = VacancyForm
+    template_name = "vacancies/form.html"
+    success_url = reverse_lazy("vacancy_list")
+ 
+ 
+class VacancyUpdateView(LoginRequiredMixin, UpdateView):
+    model = Vacancy
+    form_class = VacancyForm
+    template_name = "vacancies/form.html"
+    success_url = reverse_lazy("vacancy_list")
+ 
+ 
+class VacancyDeleteView(LoginRequiredMixin, DeleteView):
+    model = Vacancy
+    template_name = "vacancies/confirm_delete.html"
+    success_url = reverse_lazy("vacancy_list")

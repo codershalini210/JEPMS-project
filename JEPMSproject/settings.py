@@ -59,7 +59,7 @@ ROOT_URLCONF = 'JEPMSproject.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / "templates"],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -70,7 +70,7 @@ TEMPLATES = [
         },
     },
 ]
-TEMPLATES[0]["DIRS"]=BASE_DIR / "templates"
+# TEMPLATES[0]["DIRS"]=
 WSGI_APPLICATION = 'JEPMSproject.wsgi.application'
 
 
