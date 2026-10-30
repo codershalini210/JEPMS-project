@@ -5,7 +5,7 @@ from django.urls import reverse_lazy
 from django.shortcuts import render
 from django.views.generic import CreateView,DeleteView,UpdateView 
 from .models import Employer, Vacancy, JobApplication
-from .forms import EmployerForm,VacancyForm
+from .forms import EmployerForm,VacancyForm,JobApplicationForm
 
  #protected views 
 @login_required
@@ -91,3 +91,46 @@ class VacancyDeleteView(LoginRequiredMixin, DeleteView):
     model = Vacancy
     template_name = "vacancies/confirm_delete.html"
     success_url = reverse_lazy("vacancy_list")
+
+
+# Job Application CRUD Views
+
+class JobApplicationCreateView(LoginRequiredMixin, CreateView):
+    model = JobApplication
+    form_class = JobApplicationForm
+    template_name = "applications/form.html"
+    success_url = reverse_lazy("application_list")
+
+    def form_valid(self, form):
+        messages.success(
+            self.request,
+            "Job application added successfully."
+        )
+        return super().form_valid(form)
+
+
+class JobApplicationUpdateView(LoginRequiredMixin, UpdateView):
+    model = JobApplication
+    form_class = JobApplicationForm
+    template_name = "applications/form.html"
+    success_url = reverse_lazy("application_list")
+
+    def form_valid(self, form):
+        messages.success(
+            self.request,
+            "Job application updated successfully."
+        )
+        return super().form_valid(form)
+
+
+class JobApplicationDeleteView(LoginRequiredMixin, DeleteView):
+    model = JobApplication
+    template_name = "applications/confirm_delete.html"
+    success_url = reverse_lazy("application_list")
+
+    def form_valid(self, form):
+        messages.success(
+            self.request,
+            "Job application deleted successfully."
+        )
+        return super().form_valid(form)

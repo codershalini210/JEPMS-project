@@ -21,4 +21,28 @@ path("vacancies/<int:pk>/edit/",
 path("vacancies/<int:pk>/delete/",
      views.VacancyDeleteView.as_view(), name="vacancy_delete"),
 
+# Job Application URLs
+
+path(
+    "applications/add/",
+    views.JobApplicationCreateView.as_view(),
+    name="application_add"
+),
+
+path(
+    "applications/<int:pk>/edit/",
+    views.JobApplicationUpdateView.as_view(),
+    name="application_edit"
+),
+
+path(
+    "applications/<int:pk>/delete/",
+    views.JobApplicationDeleteView.as_view(),
+    name="application_delete"
+),
+path(
+    "applications/",
+    views.application_list,
+    name="application_list"
+),
 ]
